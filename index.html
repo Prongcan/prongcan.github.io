@@ -1,4 +1,108 @@
 ---
-layout: home
+layout: page
 # Index page
 ---
+
+<!-- 个人信息标题 -->
+<div class="profile-header" style="margin-bottom: 4rem; text-align: center;">
+  <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">Rongcan Pei</h1>
+  <p style="font-size: 1.3rem; color: var(--text-muted-color); margin-bottom: 0.5rem;">同济大学本科生</p>
+</div>
+
+<!-- 我的经历 -->
+<section style="margin-bottom: 4rem;">
+  <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 600;">我的经历</h2>
+  <ul style="font-size: 1.1rem; line-height: 2;">
+    <li>同济大学本科生</li>
+    <li>西湖大学访问学生</li>
+  </ul>
+</section>
+
+<!-- Research -->
+<section style="margin-bottom: 4rem;">
+  <h2 style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Research</h2>
+  
+  <!-- AI4Research -->
+  <div style="margin-bottom: 3rem;">
+    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color);">AI4Research</h3>
+    
+    <div class="paper-card" style="display: flex; gap: 1.5rem; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg);">
+      <div class="paper-preview" style="flex-shrink: 0; width: 200px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">
+        论文预览图
+      </div>
+      <div class="paper-content" style="flex: 1;">
+        <h4 style="font-size: 1.2rem; margin-bottom: 0.8rem;">
+          <a href="#" style="color: var(--heading-color); text-decoration: none;">Paper Title: AI-Powered Research Assistant</a>
+        </h4>
+        <p style="color: var(--text-muted-color); line-height: 1.6; margin-bottom: 0.8rem;">
+          <strong>摘要：</strong>本研究探索了人工智能在科研辅助中的应用，提出了一种基于大语言模型的智能研究助手框架。该系统能够自动分析文献、生成研究假设，并协助实验设计，显著提升科研效率。
+        </p>
+        <div style="font-size: 0.9rem; color: var(--text-muted-color);">
+          <span><i class="fas fa-calendar"></i> 2024</span>
+          <span style="margin-left: 1rem;"><i class="fas fa-university"></i> Tongji University</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- VLM: Text as Pixels -->
+  <div style="margin-bottom: 3rem;">
+    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color);">VLM: Text as Pixels</h3>
+    
+    <div class="paper-card" style="display: flex; gap: 1.5rem; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg);">
+      <div class="paper-preview" style="flex-shrink: 0; width: 200px; height: 150px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">
+        论文预览图
+      </div>
+      <div class="paper-content" style="flex: 1;">
+        <h4 style="font-size: 1.2rem; margin-bottom: 0.8rem;">
+          <a href="#" style="color: var(--heading-color); text-decoration: none;">Vision-Language Models: Treating Text as Pixels</a>
+        </h4>
+        <p style="color: var(--text-muted-color); line-height: 1.6; margin-bottom: 0.8rem;">
+          <strong>摘要：</strong>本文提出了一种新颖的视觉-语言模型架构，将文本视为像素级信息进行处理。通过这种方法，模型能够更好地理解文本的视觉表征，在文档理解、场景文字识别等任务上取得了显著提升。
+        </p>
+        <div style="font-size: 0.9rem; color: var(--text-muted-color);">
+          <span><i class="fas fa-calendar"></i> 2024</span>
+          <span style="margin-left: 1rem;"><i class="fas fa-university"></i> Westlake University</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 博客 -->
+<section style="margin-bottom: 4rem;">
+  <h2 style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">我的博客</h2>
+  
+  {% assign posts = site.posts | limit: 3 %}
+  <div class="blog-list">
+    {% for post in posts %}
+    <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color);">
+      <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">
+        <a href="{{ post.url }}" style="color: var(--heading-color); text-decoration: none;">
+          {{ post.title }}
+        </a>
+      </h3>
+      <div style="color: var(--text-muted-color); font-size: 0.95rem; margin-bottom: 0.8rem;">
+        <i class="far fa-calendar"></i> {{ post.date | date: "%Y-%m-%d" }}
+        {% if post.categories %}
+        <span style="margin-left: 1rem;">
+          <i class="fas fa-folder"></i>
+          {% for category in post.categories %}
+            {{ category }}{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </span>
+        {% endif %}
+      </div>
+      <p style="color: var(--text-color); line-height: 1.6;">
+        {{ post.description | default: post.excerpt | strip_html | truncate: 200 }}
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+  
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="/archives/" style="color: var(--link-color); font-size: 1.1rem; text-decoration: none;">
+      查看所有博客 <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
