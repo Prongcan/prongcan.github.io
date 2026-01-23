@@ -65,8 +65,8 @@ class TodoList:
 
 从后端转向全栈开发是我面临的又一个挑战。学习前端框架（React、Vue）时，我发现自己又回到了初学者的状态——面对满屏的 JSX 和各种 Hooks，完全不知道从何下手。
 
-![Desktop View](/assets/img/posts/coding-journey.jpg){: .shadow }
-_在咖啡馆里敲代码的日子_
+![My Coding Journey](/assets/img/avatar.jpg){: .shadow width="400" }
+_坚持学习的每一天_
 
 但这次我已经有了经验：
 
