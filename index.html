@@ -3,39 +3,67 @@ layout: page
 # Index page
 ---
 
-<!-- 个人信息标题 -->
+<!-- Custom Fonts -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+.profile-header h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.05em;
+}
+
+.profile-header p,
+.section-title,
+.experience-list,
+.paper-content,
+.blog-list {
+  font-family: 'Crimson Pro', Georgia, serif;
+}
+
+.section-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+}
+
+/* Recently Updated - hide it */
+#access-lastmod {
+  display: none !important;
+}
+</style>
+
+<!-- Profile Header -->
 <div class="profile-header" style="margin-bottom: 4rem; text-align: center;">
-  <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">Rongcan Pei</h1>
-  <p style="font-size: 1.3rem; color: var(--text-muted-color); margin-bottom: 0.5rem;">同济大学本科生 (ATTENTION: The website is not finished. Blogs and experience are placeholders.)</p>
+  <h1 style="font-size: 3.2rem; font-weight: 700; margin-bottom: 0.5rem;">Rongcan Pei</h1>
+  <p style="font-size: 1.3rem; color: var(--text-muted-color); margin-bottom: 0.5rem;">Undergraduate Student at Tongji University</p>
+  <p style="font-size: 1rem; color: var(--text-muted-color); font-style: italic; opacity: 0.8;">⚠️ This website is under construction. Some content may be placeholders.</p>
 </div>
 
-<!-- 我的经历 -->
+<!-- Experience -->
 <section style="margin-bottom: 4rem;">
-  <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 600;">我的经历</h2>
-  <ul style="font-size: 1.1rem; line-height: 2;">
-    <li>同济大学本科生</li>
-    <li>西湖大学访问学生</li>
+  <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 600;">Experience</h2>
+  <ul class="experience-list" style="font-size: 1.15rem; line-height: 2.2;">
+    <li>Undergraduate Student at <strong>Tongji University</strong></li>
+    <li>Visiting Student at <strong>Westlake University</strong></li>
   </ul>
 </section>
 
 <!-- Research -->
 <section style="margin-bottom: 4rem;">
-  <h2 style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Research</h2>
+  <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Research</h2>
   
   <!-- AI4Research -->
   <div style="margin-bottom: 3rem;">
-    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color);">AI4Research</h3>
+    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color); font-family: 'Libre Baskerville', serif;">AI4Research</h3>
     
     <div class="paper-card" style="display: flex; gap: 1.5rem; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg);">
       <div class="paper-preview" style="flex-shrink: 0; width: 200px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">
-        论文预览图
+        Paper Preview
       </div>
       <div class="paper-content" style="flex: 1;">
         <h4 style="font-size: 1.2rem; margin-bottom: 0.8rem;">
           <a href="#" style="color: var(--heading-color); text-decoration: none;">Paper Title: AI-Powered Research Assistant</a>
         </h4>
-        <p style="color: var(--text-muted-color); line-height: 1.6; margin-bottom: 0.8rem;">
-          <strong>摘要：</strong>本研究探索了人工智能在科研辅助中的应用，提出了一种基于大语言模型的智能研究助手框架。该系统能够自动分析文献、生成研究假设，并协助实验设计，显著提升科研效率。
+        <p style="color: var(--text-muted-color); line-height: 1.7; margin-bottom: 0.8rem;">
+          <strong>Abstract:</strong> This research explores the application of artificial intelligence in research assistance, proposing an intelligent research assistant framework based on large language models. The system can automatically analyze literature, generate research hypotheses, and assist in experimental design, significantly improving research efficiency.
         </p>
         <div style="font-size: 0.9rem; color: var(--text-muted-color);">
           <span><i class="fas fa-calendar"></i> 2024</span>
@@ -47,18 +75,18 @@ layout: page
   
   <!-- VLM: Text as Pixels -->
   <div style="margin-bottom: 3rem;">
-    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color);">VLM: Text as Pixels</h3>
+    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color); font-family: 'Libre Baskerville', serif;">VLM: Text as Pixels</h3>
     
     <div class="paper-card" style="display: flex; gap: 1.5rem; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg);">
       <div class="paper-preview" style="flex-shrink: 0; width: 200px; height: 150px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">
-        论文预览图
+        Paper Preview
       </div>
       <div class="paper-content" style="flex: 1;">
         <h4 style="font-size: 1.2rem; margin-bottom: 0.8rem;">
           <a href="#" style="color: var(--heading-color); text-decoration: none;">Vision-Language Models: Treating Text as Pixels</a>
         </h4>
-        <p style="color: var(--text-muted-color); line-height: 1.6; margin-bottom: 0.8rem;">
-          <strong>摘要：</strong>本文提出了一种新颖的视觉-语言模型架构，将文本视为像素级信息进行处理。通过这种方法，模型能够更好地理解文本的视觉表征，在文档理解、场景文字识别等任务上取得了显著提升。
+        <p style="color: var(--text-muted-color); line-height: 1.7; margin-bottom: 0.8rem;">
+          <strong>Abstract:</strong> This paper proposes a novel vision-language model architecture that processes text as pixel-level information. Through this approach, the model can better understand the visual representation of text, achieving significant improvements in tasks such as document understanding and scene text recognition.
         </p>
         <div style="font-size: 0.9rem; color: var(--text-muted-color);">
           <span><i class="fas fa-calendar"></i> 2024</span>
@@ -69,21 +97,21 @@ layout: page
   </div>
 </section>
 
-<!-- 博客 -->
+<!-- Blog -->
 <section style="margin-bottom: 4rem;">
-  <h2 style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">我的博客</h2>
+  <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Blog</h2>
   
   {% assign posts = site.posts | limit: 3 %}
   <div class="blog-list">
     {% for post in posts %}
     <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color);">
-      <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">
+      <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; font-family: 'Libre Baskerville', serif;">
         <a href="{{ post.url }}" style="color: var(--heading-color); text-decoration: none;">
           {{ post.title }}
         </a>
       </h3>
       <div style="color: var(--text-muted-color); font-size: 0.95rem; margin-bottom: 0.8rem;">
-        <i class="far fa-calendar"></i> {{ post.date | date: "%Y-%m-%d" }}
+        <i class="far fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
         {% if post.categories %}
         <span style="margin-left: 1rem;">
           <i class="fas fa-folder"></i>
@@ -93,7 +121,7 @@ layout: page
         </span>
         {% endif %}
       </div>
-      <p style="color: var(--text-color); line-height: 1.6;">
+      <p style="color: var(--text-color); line-height: 1.7;">
         {{ post.description | default: post.excerpt | strip_html | truncate: 200 }}
       </p>
     </div>
@@ -101,8 +129,8 @@ layout: page
   </div>
   
   <div style="text-align: center; margin-top: 2rem;">
-    <a href="/blog/" style="color: var(--link-color); font-size: 1.1rem; text-decoration: none;">
-      查看所有博客 <i class="fas fa-arrow-right"></i>
+    <a href="/blog/" style="color: var(--link-color); font-size: 1.1rem; text-decoration: none; font-family: 'Crimson Pro', serif;">
+      View All Posts <i class="fas fa-arrow-right"></i>
     </a>
   </div>
 </section>
