@@ -1,5 +1,7 @@
 ---
-permalink: /blog/
+layout: page
+icon: fas fa-archive
+order: 2
 ---
 
 <!DOCTYPE html>

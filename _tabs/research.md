@@ -1,5 +1,7 @@
 ---
-permalink: /research/
+layout: page
+icon: fas fa-flask
+order: 1
 ---
 
 <!DOCTYPE html>

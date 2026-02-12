@@ -5,6 +5,13 @@ layout: page
 
 <script>
 (function() {
+  // Helper function to check if element is already in view
+  function isElementInView(element, buffer = 100) {
+    if (!element) return false;
+    const rect = element.getBoundingClientRect();
+    return rect.top <= buffer && rect.bottom >= buffer;
+  }
+
   // Wait for sidebar to load, then modify the navigation links
   function modifySidebarLinks() {
     const sidebarLinks = document.querySelectorAll('.nav-link');
@@ -90,27 +97,24 @@ layout: page
       e.preventDefault();
       e.stopPropagation();
       const isVisible = submenu.classList.contains('visible');
+      const researchSection = document.getElementById('research');
 
       if (isVisible) {
         submenu.classList.remove('visible');
         parentLi.classList.remove('expanded');
-        // Scroll to research section
-        const researchSection = document.getElementById('research');
-        if (researchSection) {
+        // Only scroll if not already in view
+        if (researchSection && !isElementInView(researchSection, 150)) {
           researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Update URL after scroll starts
-          setTimeout(() => history.replaceState(null, null, '#research'), 100);
         }
+        setTimeout(() => history.replaceState(null, null, '#research'), 100);
       } else {
         submenu.classList.add('visible');
         parentLi.classList.add('expanded');
-        // Scroll to research section
-        const researchSection = document.getElementById('research');
-        if (researchSection) {
+        // Only scroll if not already in view
+        if (researchSection && !isElementInView(researchSection, 150)) {
           researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Update URL after scroll starts
-          setTimeout(() => history.replaceState(null, null, '#research'), 100);
         }
+        setTimeout(() => history.replaceState(null, null, '#research'), 100);
       }
     });
   }
@@ -158,25 +162,24 @@ layout: page
       e.preventDefault();
       e.stopPropagation();
       const isVisible = submenu.classList.contains('visible');
+      const blogSection = document.getElementById('blog');
 
       if (isVisible) {
         submenu.classList.remove('visible');
         parentLi.classList.remove('expanded');
-        // Scroll to blog section
-        const blogSection = document.getElementById('blog');
-        if (blogSection) {
+        // Only scroll if not already in view
+        if (blogSection && !isElementInView(blogSection, 150)) {
           blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(() => history.replaceState(null, null, '#blog'), 100);
         }
+        setTimeout(() => history.replaceState(null, null, '#blog'), 100);
       } else {
         submenu.classList.add('visible');
         parentLi.classList.add('expanded');
-        // Scroll to blog section
-        const blogSection = document.getElementById('blog');
-        if (blogSection) {
+        // Only scroll if not already in view
+        if (blogSection && !isElementInView(blogSection, 150)) {
           blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(() => history.replaceState(null, null, '#blog'), 100);
         }
+        setTimeout(() => history.replaceState(null, null, '#blog'), 100);
       }
     });
   }
