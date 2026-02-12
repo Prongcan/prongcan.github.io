@@ -3,8 +3,13 @@ layout: page
 icon: fas fa-archive
 order: 3
 title: Blog
+permalink: /blog/
 ---
 
-<script>
-window.location.href = '/#blog';
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="0;url=/#blog">
+  <script>window.location.href='/#blog';</script>
+</head>
+</html>
