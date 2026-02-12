@@ -9,8 +9,8 @@ layout: page
 
 /* Global font improvements for better readability */
 body {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.15rem;
+  line-height: 1.75;
 }
 
 .profile-header h1 {
@@ -38,12 +38,13 @@ body {
 /* Publication Card Styles */
 .pub-card {
   display: flex;
-  gap: 1.5rem;
-  padding: 1.8rem;
+  gap: 2rem;
+  padding: 2rem;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   background: var(--card-bg);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  min-height: 280px;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
@@ -54,8 +55,8 @@ body {
 
 .pub-pipeline {
   flex-shrink: 0;
-  width: 280px;
-  height: 200px;
+  width: 300px;
+  height: 240px;
   background: #f8f9fa;
   border-radius: 8px;
   display: flex;
@@ -69,6 +70,23 @@ body {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.pub-links {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.pub-links a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.pub-links a:hover {
+  opacity: 0.7;
 }
 
 .pub-content {
@@ -122,7 +140,7 @@ body {
 </style>
 
 <!-- Profile Header -->
-<div class="profile-header" style="margin-bottom: 4rem; text-align: center;">
+<div id="home" class="profile-header" style="margin-bottom: 4rem; text-align: center;">
   <h1 style="font-size: 3.2rem; font-weight: 700; margin-bottom: 0.5rem;">Rongcan Pei</h1>
   <p style="font-size: 1.3rem; color: var(--text-muted-color); margin-bottom: 1.5rem;">Undergraduate Student at Tongji University</p>
   
@@ -144,7 +162,7 @@ body {
 </div>
 
 <!-- Experience -->
-<section style="margin-bottom: 4rem;">
+<section id="experience" style="margin-bottom: 4rem;">
   <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 600;">Experience</h2>
   
   <div style="font-family: 'Crimson Pro', Georgia, serif;">
@@ -187,7 +205,7 @@ body {
 </section>
 
 <!-- Research -->
-<section style="margin-bottom: 4rem;">
+<section id="research" style="margin-bottom: 4rem;">
   <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Publications</h2>
 
   <!-- VERA Paper -->
@@ -198,20 +216,21 @@ body {
     <div class="pub-content">
       <div class="pub-status">Under Review</div>
       <h4 class="pub-title">
-        <a href="https://arxiv.org/abs/2602.10146v1" target="_blank" rel="noopener noreferrer">
-          VERA: Identifying and Leveraging Visual Evidence Retrieval Heads in Long-Context Understanding
-        </a>
+        VERA: Identifying and Leveraging Visual Evidence Retrieval Heads in Long-Context Understanding
       </h4>
       <div class="pub-authors">
         Rongcan Pei, Huan Li, Fang Guo, Qi Zhu
       </div>
-      <p style="font-size: 0.9rem; margin-bottom: 0.8rem;">
-        <a href="https://github.com/Prongcan/VERA" target="_blank" rel="noopener noreferrer" style="color: var(--link-color); text-decoration: none;">
+      <div class="pub-links">
+        <a href="https://arxiv.org/abs/2602.10146v1" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-file-alt"></i> arXiv
+        </a>
+        <a href="https://github.com/Prongcan/VERA" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-github"></i> Code
         </a>
-      </p>
+      </div>
       <p class="pub-abstract">
-        While Vision-Language Models (VLMs) have shown promise in textual understanding, they face significant challenges when handling long context and complex reasoning tasks. In this paper, we dissect the internal mechanisms governing long-context processing in VLMs to understand their performance bottlenecks. Through the lens of attention analysis, we identify specific <strong>Visual Evidence Retrieval (VER) Heads</strong> — a <em>sparse, dynamic</em> set of attention heads critical for locating visual cues during reasoning, distinct from static OCR heads. We demonstrate that these heads are causal to model performance; masking them leads to significant degradation. Leveraging this discovery, we propose <strong>VERA</strong> (Visual Evidence Retrieval Augmentation), a training-free framework that detects model uncertainty (i.e., entropy) to trigger the explicit verbalization of visual evidence attended by VER heads. Comprehensive experiments demonstrate that VERA significantly improves long-context understanding of open-source VLMs: it yields an average relative improvement of <strong>21.3%</strong> on Qwen3-VL-8B-Instruct and <strong>20.1%</strong> on GLM-4.1V-Thinking across five benchmarks.
+        Through attention analysis, we identify specific <strong>Visual Evidence Retrieval (VER) Heads</strong> — a <em>sparse, dynamic</em> set of attention heads critical for locating visual cues during reasoning. We propose <strong>VERA</strong>, a training-free framework that detects model uncertainty to trigger explicit verbalization of visual evidence. VERA achieves <strong>21.3%</strong> relative improvement on Qwen3-VL-8B-Instruct and <strong>20.1%</strong> on GLM-4.1V-Thinking across five benchmarks.
       </p>
     </div>
   </div>
@@ -229,13 +248,13 @@ body {
       <div class="pub-authors">
         <span style="text-decoration: underline;">R. Pei</span>*, F. Guo*, Q. Qi, Q. Zhu, Y. Luo, J. Yan, D. Zheng, Y. Zhang
       </div>
-      <p style="font-size: 0.9rem; margin-bottom: 0.8rem;">
-        <a href="https://github.com/Prongcan/ExpInstructor" target="_blank" rel="noopener noreferrer" style="color: var(--link-color); text-decoration: none;">
+      <div class="pub-links">
+        <a href="https://github.com/Prongcan/ExpInstructor" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-github"></i> Code & Prompts
         </a>
-      </p>
+      </div>
       <p class="pub-abstract">
-        As automatic idea generation becomes an increasingly central capability in emerging AI Scientist systems, automatic idea evaluation has grown equally critical for ensuring that these systems can propose promising research directions. Recent studies have shown that relying on the parametric knowledge of LLMs and the retrieval-augmented framework remains insufficient to match the nuanced judgments of human experts. To bridge this gap, we propose <strong>ExpInstructor</strong>, the first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. ExpInstructor captures human academic experience by extracting experience triples from large-scale review corpora, which consist of knowledge entities and their relationships. It then constructs Experience Graph from these triples and employs an agentic reasoning framework for relevant experience retrieval and experience-driven idea evaluation. We further design metrics to evaluate correlations between the ExpInstructor and humans regarding the score and concerns raised. Both model-based and human assessments demonstrate that ExpInstructor significantly outperforms existing baselines.
+        We propose <strong>ExpInstructor</strong>, the first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. ExpInstructor extracts experience triples from large-scale review corpora, constructs an Experience Graph, and employs an agentic reasoning framework for experience-driven idea evaluation. Both model-based and human assessments demonstrate that ExpInstructor significantly outperforms existing baselines.
       </p>
     </div>
   </div>
