@@ -1,0 +1,28 @@
+{
+  "bash-prompt-submit-hook": {
+    "enabled": true,
+    "autoApprove": {
+      "safeCommands": [
+        "ls",
+        "pwd",
+        "cat",
+        "head",
+        "tail",
+        "grep",
+        "find",
+        "echo",
+        "sed",
+        "awk"
+      ],
+      "patterns": [
+        "^git status",
+        "^git diff",
+        "^git log",
+        "^ls ",
+        "^cat ",
+        "^grep ",
+        "^find "
+      ]
+    }
+  }
+}

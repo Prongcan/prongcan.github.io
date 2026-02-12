@@ -28,24 +28,6 @@ layout: page
         linkModified = true;
       }
     });
-    const sidebarLinks = document.querySelectorAll('.nav-link');
-    let researchLink = null;
-    let blogLink = null;
-
-    sidebarLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      const text = link.textContent.trim();
-
-      // Modify Research and Blog links to point to home anchors
-      if (href === '/research/' || href === '/research') {
-        link.setAttribute('href', '/#research');
-        researchLink = link;
-      }
-      if (href === '/blog/' || href === '/blog') {
-        link.setAttribute('href', '/#blog');
-        blogLink = link;
-      }
-    });
 
     // Add submenu for Research papers
     if (researchLink) {
@@ -106,6 +88,7 @@ layout: page
     // Toggle submenu on Research link click
     researchLink.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
       const isVisible = submenu.classList.contains('visible');
 
       if (isVisible) {
@@ -115,7 +98,8 @@ layout: page
         const researchSection = document.getElementById('research');
         if (researchSection) {
           researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.pushState(null, null, '#research');
+          // Update URL after scroll starts
+          setTimeout(() => history.replaceState(null, null, '#research'), 100);
         }
       } else {
         submenu.classList.add('visible');
@@ -124,7 +108,8 @@ layout: page
         const researchSection = document.getElementById('research');
         if (researchSection) {
           researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.pushState(null, null, '#research');
+          // Update URL after scroll starts
+          setTimeout(() => history.replaceState(null, null, '#research'), 100);
         }
       }
     });
@@ -171,6 +156,7 @@ layout: page
     // Toggle submenu on Blog link click
     blogLink.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
       const isVisible = submenu.classList.contains('visible');
 
       if (isVisible) {
@@ -180,7 +166,7 @@ layout: page
         const blogSection = document.getElementById('blog');
         if (blogSection) {
           blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.pushState(null, null, '#blog');
+          setTimeout(() => history.replaceState(null, null, '#blog'), 100);
         }
       } else {
         submenu.classList.add('visible');
@@ -189,7 +175,7 @@ layout: page
         const blogSection = document.getElementById('blog');
         if (blogSection) {
           blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.pushState(null, null, '#blog');
+          setTimeout(() => history.replaceState(null, null, '#blog'), 100);
         }
       }
     });
@@ -207,68 +193,36 @@ layout: page
   // Also try after a short delay (for theme rendering)
   setTimeout(modifySidebarLinks, 500);
 
-  // Intercept clicks for smooth scrolling (do this immediately)
+  // Unified click handler for smooth scrolling
   document.addEventListener('click', function(e) {
     const link = e.target.closest('a');
     if (!link) return;
 
     const href = link.getAttribute('href');
+    if (!href) return;
 
-    // Handle /research and /blog links
-    if (href && (href === '/research' || href === '/research/' || href === '/blog' || href === '/blog/')) {
+    // Handle /research and /blog links (prevent default anchor jump)
+    if (href === '/research' || href === '/research/' || href === '/blog' || href === '/blog/') {
       e.preventDefault();
-      const targetId = href.includes('research') ? '#research' : '#blog';
-      const targetSection = document.getElementById(targetId.substring(1));
+      e.stopPropagation();
+      const targetId = href.includes('research') ? 'research' : 'blog';
+      const targetSection = document.getElementById(targetId);
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.pushState(null, null, targetId);
+        setTimeout(() => history.replaceState(null, null, '#' + targetId), 100);
       }
       return;
     }
 
-    // Handle paper links
-  document.addEventListener('click', function(e) {
-    const link = e.target.closest('a');
-    if (!link) return;
-
-    const href = link.getAttribute('href');
-
-    // Handle main sections
-    if (href === '/#research') {
-      e.preventDefault();
-      const researchSection = document.getElementById('research');
-      if (researchSection) {
-        researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.pushState(null, null, '#research');
-      }
-      return;
-    }
-
-    if (href === '/#blog') {
-      e.preventDefault();
-      const blogSection = document.getElementById('blog');
-      if (blogSection) {
-        blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.pushState(null, null, '#blog');
-      }
-      return;
-    }
-
-    if (href === '/' || href === '/#') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      history.pushState(null, null, ' ');
-      return;
-    }
-
-    // Handle paper links (auto-generated from YAML)
+    // Handle paper links (vera, expinstructor, paperignition)
     if (href.startsWith('/#') && href !== '/#research' && href !== '/#blog' && !href.startsWith('/#blog-')) {
       e.preventDefault();
+      e.stopPropagation();
       const pubId = href.replace('/#', '');
       const pubSection = document.getElementById(pubId);
       if (pubSection) {
         pubSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.pushState(null, null, '#' + pubId);
+        setTimeout(() => history.replaceState(null, null, '#' + pubId), 100);
       }
       return;
     }
@@ -276,12 +230,22 @@ layout: page
     // Handle blog post links
     if (href.startsWith('/#blog-')) {
       e.preventDefault();
+      e.stopPropagation();
       const blogId = href.replace('/#', '');
       const blogSection = document.getElementById(blogId);
       if (blogSection) {
         blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.pushState(null, null, '#' + blogId);
+        setTimeout(() => history.replaceState(null, null, '#' + blogId), 100);
       }
+      return;
+    }
+
+    // Handle home link
+    if (href === '/' || href === '/#') {
+      e.preventDefault();
+      e.stopPropagation();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => history.replaceState(null, null, ' '), 100);
       return;
     }
   });
