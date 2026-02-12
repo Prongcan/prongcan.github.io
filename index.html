@@ -7,6 +7,12 @@ layout: page
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
+/* Global font improvements for better readability */
+body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
 .profile-header h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   letter-spacing: 0.05em;
@@ -27,6 +33,91 @@ layout: page
 /* Recently Updated - hide it */
 #access-lastmod {
   display: none !important;
+}
+
+/* Publication Card Styles */
+.pub-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--card-bg);
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.pub-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.pub-pipeline {
+  flex-shrink: 0;
+  width: 280px;
+  height: 200px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.pub-pipeline img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pub-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pub-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.pub-title a {
+  color: var(--heading-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.pub-title a:hover {
+  color: var(--link-color);
+}
+
+.pub-authors {
+  font-size: 0.95rem;
+  color: var(--text-muted-color);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.pub-abstract {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.pub-status {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
 }
 </style>
 
@@ -97,51 +188,55 @@ layout: page
 
 <!-- Research -->
 <section style="margin-bottom: 4rem;">
-  <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Research</h2>
-  
-  <!-- AI4Research -->
-  <div style="margin-bottom: 3rem;">
-    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color); font-family: 'Libre Baskerville', serif;">AI4Research</h3>
-    
-    <div class="paper-card" style="display: flex; gap: 1.5rem; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg);">
-      <div class="paper-preview" style="flex-shrink: 0; width: 200px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">
-        Paper Preview
+  <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Publications</h2>
+
+  <!-- VERA Paper -->
+  <div class="pub-card">
+    <div class="pub-pipeline">
+      <img src="/assets/img/publications/VERA.png" alt="VERA Pipeline" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
+    </div>
+    <div class="pub-content">
+      <div class="pub-status">Under Review</div>
+      <h4 class="pub-title">
+        <a href="https://arxiv.org/abs/2602.10146v1" target="_blank" rel="noopener noreferrer">
+          VERA: Identifying and Leveraging Visual Evidence Retrieval Heads in Long-Context Understanding
+        </a>
+      </h4>
+      <div class="pub-authors">
+        Rongcan Pei, Huan Li, Fang Guo, Qi Zhu
       </div>
-      <div class="paper-content" style="flex: 1;">
-        <h4 style="font-size: 1.2rem; margin-bottom: 0.8rem;">
-          <a href="#" style="color: var(--heading-color); text-decoration: none;">Paper Title: AI-Powered Research Assistant</a>
-        </h4>
-        <p style="color: var(--text-muted-color); line-height: 1.7; margin-bottom: 0.8rem;">
-          <strong>Abstract:</strong> This research explores the application of artificial intelligence in research assistance, proposing an intelligent research assistant framework based on large language models. The system can automatically analyze literature, generate research hypotheses, and assist in experimental design, significantly improving research efficiency.
-        </p>
-        <div style="font-size: 0.9rem; color: var(--text-muted-color);">
-          <span><i class="fas fa-calendar"></i> 2024</span>
-          <span style="margin-left: 1rem;"><i class="fas fa-university"></i> Tongji University</span>
-        </div>
-      </div>
+      <p style="font-size: 0.9rem; margin-bottom: 0.8rem;">
+        <a href="https://github.com/Prongcan/VERA" target="_blank" rel="noopener noreferrer" style="color: var(--link-color); text-decoration: none;">
+          <i class="fab fa-github"></i> Code
+        </a>
+      </p>
+      <p class="pub-abstract">
+        While Vision-Language Models (VLMs) have shown promise in textual understanding, they face significant challenges when handling long context and complex reasoning tasks. In this paper, we dissect the internal mechanisms governing long-context processing in VLMs to understand their performance bottlenecks. Through the lens of attention analysis, we identify specific <strong>Visual Evidence Retrieval (VER) Heads</strong> — a <em>sparse, dynamic</em> set of attention heads critical for locating visual cues during reasoning, distinct from static OCR heads. We demonstrate that these heads are causal to model performance; masking them leads to significant degradation. Leveraging this discovery, we propose <strong>VERA</strong> (Visual Evidence Retrieval Augmentation), a training-free framework that detects model uncertainty (i.e., entropy) to trigger the explicit verbalization of visual evidence attended by VER heads. Comprehensive experiments demonstrate that VERA significantly improves long-context understanding of open-source VLMs: it yields an average relative improvement of <strong>21.3%</strong> on Qwen3-VL-8B-Instruct and <strong>20.1%</strong> on GLM-4.1V-Thinking across five benchmarks.
+      </p>
     </div>
   </div>
-  
-  <!-- VLM: Text as Pixels -->
-  <div style="margin-bottom: 3rem;">
-    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--link-color); font-family: 'Libre Baskerville', serif;">VLM: Text as Pixels</h3>
-    
-    <div class="paper-card" style="display: flex; gap: 1.5rem; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg);">
-      <div class="paper-preview" style="flex-shrink: 0; width: 200px; height: 150px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">
-        Paper Preview
+
+  <!-- ExpInstructor Paper -->
+  <div class="pub-card">
+    <div class="pub-pipeline">
+      <img src="/assets/img/publications/instructor.png" alt="ExpInstructor Pipeline" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
+    </div>
+    <div class="pub-content">
+      <div class="pub-status">Under Review</div>
+      <h4 class="pub-title">
+        ExpInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation
+      </h4>
+      <div class="pub-authors">
+        <span style="text-decoration: underline;">R. Pei</span>*, F. Guo*, Q. Qi, Q. Zhu, Y. Luo, J. Yan, D. Zheng, Y. Zhang
       </div>
-      <div class="paper-content" style="flex: 1;">
-        <h4 style="font-size: 1.2rem; margin-bottom: 0.8rem;">
-          <a href="#" style="color: var(--heading-color); text-decoration: none;">Vision-Language Models: Treating Text as Pixels</a>
-        </h4>
-        <p style="color: var(--text-muted-color); line-height: 1.7; margin-bottom: 0.8rem;">
-          <strong>Abstract:</strong> This paper proposes a novel vision-language model architecture that processes text as pixel-level information. Through this approach, the model can better understand the visual representation of text, achieving significant improvements in tasks such as document understanding and scene text recognition.
-        </p>
-        <div style="font-size: 0.9rem; color: var(--text-muted-color);">
-          <span><i class="fas fa-calendar"></i> 2024</span>
-          <span style="margin-left: 1rem;"><i class="fas fa-university"></i> Westlake University</span>
-        </div>
-      </div>
+      <p style="font-size: 0.9rem; margin-bottom: 0.8rem;">
+        <a href="https://github.com/Prongcan/ExpInstructor" target="_blank" rel="noopener noreferrer" style="color: var(--link-color); text-decoration: none;">
+          <i class="fab fa-github"></i> Code & Prompts
+        </a>
+      </p>
+      <p class="pub-abstract">
+        As automatic idea generation becomes an increasingly central capability in emerging AI Scientist systems, automatic idea evaluation has grown equally critical for ensuring that these systems can propose promising research directions. Recent studies have shown that relying on the parametric knowledge of LLMs and the retrieval-augmented framework remains insufficient to match the nuanced judgments of human experts. To bridge this gap, we propose <strong>ExpInstructor</strong>, the first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. ExpInstructor captures human academic experience by extracting experience triples from large-scale review corpora, which consist of knowledge entities and their relationships. It then constructs Experience Graph from these triples and employs an agentic reasoning framework for relevant experience retrieval and experience-driven idea evaluation. We further design metrics to evaluate correlations between the ExpInstructor and humans regarding the score and concerns raised. Both model-based and human assessments demonstrate that ExpInstructor significantly outperforms existing baselines.
+      </p>
     </div>
   </div>
 </section>
