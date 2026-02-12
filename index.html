@@ -94,7 +94,7 @@ layout: page
         e.stopPropagation();
         const targetSection = document.getElementById(paper.id);
         if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+          targetSection.scrollIntoView();
           history.replaceState(null, null, `#${paper.id}`);
         }
       });
@@ -115,7 +115,7 @@ layout: page
         parentLi.classList.remove('expanded');
         // Only scroll if not already in view
         if (researchSection && !isElementInView(researchSection, 150)) {
-          researchSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+          researchSection.scrollIntoView();
         }
         setTimeout(() => history.replaceState(null, null, '#research'), 100);
       } else {
@@ -123,7 +123,7 @@ layout: page
         parentLi.classList.add('expanded');
         // Only scroll if not already in view
         if (researchSection && !isElementInView(researchSection, 150)) {
-          researchSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+          researchSection.scrollIntoView();
         }
         setTimeout(() => history.replaceState(null, null, '#research'), 100);
       }
@@ -170,7 +170,7 @@ layout: page
         e.stopPropagation();
         const targetSection = document.getElementById(blog.id);
         if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+          targetSection.scrollIntoView();
           history.replaceState(null, null, `#${blog.id}`);
         }
       });
@@ -191,7 +191,7 @@ layout: page
         parentLi.classList.remove('expanded');
         // Only scroll if not already in view
         if (blogSection && !isElementInView(blogSection, 150)) {
-          blogSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+          blogSection.scrollIntoView();
         }
         setTimeout(() => history.replaceState(null, null, '#blog'), 100);
       } else {
@@ -199,7 +199,7 @@ layout: page
         parentLi.classList.add('expanded');
         // Only scroll if not already in view
         if (blogSection && !isElementInView(blogSection, 150)) {
-          blogSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+          blogSection.scrollIntoView();
         }
         setTimeout(() => history.replaceState(null, null, '#blog'), 100);
       }
@@ -233,7 +233,7 @@ layout: page
       const targetId = href.includes('research') ? 'research' : 'blog';
       const targetSection = document.getElementById(targetId);
       if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+        targetSection.scrollIntoView();
         setTimeout(() => history.replaceState(null, null, '#' + targetId), 100);
       }
       return;
@@ -246,7 +246,7 @@ layout: page
       const pubId = href.replace('/#', '');
       const pubSection = document.getElementById(pubId);
       if (pubSection) {
-        pubSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+        pubSection.scrollIntoView();
         setTimeout(() => history.replaceState(null, null, '#' + pubId), 100);
       }
       return;
@@ -259,7 +259,7 @@ layout: page
       const blogId = href.replace('/#', '');
       const blogSection = document.getElementById(blogId);
       if (blogSection) {
-        blogSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+        blogSection.scrollIntoView();
         setTimeout(() => history.replaceState(null, null, '#' + blogId), 100);
       }
       return;
@@ -269,7 +269,7 @@ layout: page
     if (href === '/' || href === '/#') {
       e.preventDefault();
       e.stopPropagation();
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.scrollTo(0, 0);
       setTimeout(() => history.replaceState(null, null, ' '), 100);
       return;
     }
@@ -281,7 +281,7 @@ layout: page
     if (hash) {
       const target = document.querySelector(hash);
       if (target) {
-        target.scrollIntoView({ behavior: 'auto', block: 'start' });
+        target.scrollIntoView();
       }
     }
   });
@@ -291,7 +291,7 @@ layout: page
     setTimeout(function() {
       const target = document.querySelector(window.location.hash);
       if (target) {
-        target.scrollIntoView({ behavior: 'auto', block: 'start' });
+        target.scrollIntoView();
       }
     }, 100);
   }
@@ -304,8 +304,22 @@ layout: page
 
 /* Global font improvements for better readability */
 body {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   line-height: 1.75;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 300px;
+}
+
+/* Fix layout - center content and hide search */
+.top-bar {
+  display: none !important;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .profile-header h1 {
