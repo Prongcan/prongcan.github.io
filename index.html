@@ -94,7 +94,7 @@ layout: page
         e.stopPropagation();
         const targetSection = document.getElementById(paper.id);
         if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
           history.replaceState(null, null, `#${paper.id}`);
         }
       });
@@ -115,7 +115,7 @@ layout: page
         parentLi.classList.remove('expanded');
         // Only scroll if not already in view
         if (researchSection && !isElementInView(researchSection, 150)) {
-          researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          researchSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         }
         setTimeout(() => history.replaceState(null, null, '#research'), 100);
       } else {
@@ -123,7 +123,7 @@ layout: page
         parentLi.classList.add('expanded');
         // Only scroll if not already in view
         if (researchSection && !isElementInView(researchSection, 150)) {
-          researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          researchSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         }
         setTimeout(() => history.replaceState(null, null, '#research'), 100);
       }
@@ -170,7 +170,7 @@ layout: page
         e.stopPropagation();
         const targetSection = document.getElementById(blog.id);
         if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
           history.replaceState(null, null, `#${blog.id}`);
         }
       });
@@ -191,7 +191,7 @@ layout: page
         parentLi.classList.remove('expanded');
         // Only scroll if not already in view
         if (blogSection && !isElementInView(blogSection, 150)) {
-          blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          blogSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         }
         setTimeout(() => history.replaceState(null, null, '#blog'), 100);
       } else {
@@ -199,7 +199,7 @@ layout: page
         parentLi.classList.add('expanded');
         // Only scroll if not already in view
         if (blogSection && !isElementInView(blogSection, 150)) {
-          blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          blogSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         }
         setTimeout(() => history.replaceState(null, null, '#blog'), 100);
       }
@@ -233,7 +233,7 @@ layout: page
       const targetId = href.includes('research') ? 'research' : 'blog';
       const targetSection = document.getElementById(targetId);
       if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         setTimeout(() => history.replaceState(null, null, '#' + targetId), 100);
       }
       return;
@@ -246,7 +246,7 @@ layout: page
       const pubId = href.replace('/#', '');
       const pubSection = document.getElementById(pubId);
       if (pubSection) {
-        pubSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        pubSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         setTimeout(() => history.replaceState(null, null, '#' + pubId), 100);
       }
       return;
@@ -259,7 +259,7 @@ layout: page
       const blogId = href.replace('/#', '');
       const blogSection = document.getElementById(blogId);
       if (blogSection) {
-        blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        blogSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         setTimeout(() => history.replaceState(null, null, '#' + blogId), 100);
       }
       return;
@@ -269,7 +269,7 @@ layout: page
     if (href === '/' || href === '/#') {
       e.preventDefault();
       e.stopPropagation();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
       setTimeout(() => history.replaceState(null, null, ' '), 100);
       return;
     }
@@ -281,7 +281,7 @@ layout: page
     if (hash) {
       const target = document.querySelector(hash);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     }
   });
@@ -291,7 +291,7 @@ layout: page
     setTimeout(function() {
       const target = document.querySelector(window.location.hash);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     }, 100);
   }
@@ -332,7 +332,7 @@ body {
 
 /* Smooth scrolling */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* Publication Card Styles */
