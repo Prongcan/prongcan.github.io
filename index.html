@@ -25,12 +25,12 @@ layout: page
 
       // Modify Research and Blog links to point to home anchors
       if (href === '/research/' || href === '/research') {
-        link.setAttribute('href', '/#research');
+        link.setAttribute('href', '#research');
         researchLink = link;
         linkModified = true;
       }
       if (href === '/blog/' || href === '/blog') {
-        link.setAttribute('href', '/#blog');
+        link.setAttribute('href', '#blog');
         blogLink = link;
         linkModified = true;
       }
@@ -87,6 +87,17 @@ layout: page
 
       li.appendChild(a);
       submenu.appendChild(li);
+
+      // Add click listener to prevent navigation and scroll instead
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const targetSection = document.getElementById(paper.id);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, null, `#${paper.id}`);
+        }
+      });
     });
 
     // Insert submenu after the Research link
@@ -152,6 +163,17 @@ layout: page
 
       li.appendChild(a);
       submenu.appendChild(li);
+
+      // Add click listener to prevent navigation and scroll instead
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const targetSection = document.getElementById(blog.id);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, null, `#${blog.id}`);
+        }
+      });
     });
 
     // Insert submenu after the Blog link
