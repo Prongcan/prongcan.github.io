@@ -527,17 +527,36 @@ html {
   {% for pub in site.data.publications %}
   <div id="{{ pub.id }}" class="pub-card">
     <div class="pub-pipeline">
-      <img src="{{ pub.image }}" alt="{{ pub.title }} Pipeline">
+      {% if pub.image contains 'placeholder' %}
+        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 6px; color: white; font-size: 0.85rem; text-align: center; padding: 1rem;">
+          <i class="fas fa-globe" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+          <div>Website Screenshot</div>
+          <div style="font-size: 0.75rem; opacity: 0.9;">Coming Soon</div>
+        </div>
+      {% else %}
+        <img src="{{ pub.image }}" alt="{{ pub.title }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
+      {% endif %}
     </div>
     <div class="pub-content">
       <div class="pub-status">{{ pub.status }}</div>
       <h4 class="pub-title">
-        {{ pub.title }}
+        {% if pub.website %}
+          <a href="{{ pub.website }}" target="_blank" rel="noopener noreferrer" style="color: var(--heading-color); text-decoration: none;">
+            {{ pub.title }} <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 0.3rem; opacity: 0.6;"></i>
+          </a>
+        {% else %}
+          {{ pub.title }}
+        {% endif %}
       </h4>
       <div class="pub-authors">
         {{ pub.authors }}
       </div>
       <div class="pub-links">
+        {% if pub.website %}
+        <a href="{{ pub.website }}" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-globe"></i> Website
+        </a>
+        {% endif %}
         {% if pub.arxiv %}
         <a href="{{ pub.arxiv }}" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-file-alt"></i> arXiv

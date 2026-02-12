@@ -1,5 +1,5 @@
 # Publications Data
-# Add your papers here. The website will automatically render them.
+# Add your papers and projects here. The website will automatically render them.
 
 - id: vera
   title: "VERA: Identifying and Leveraging Visual Evidence Retrieval Heads in Long-Context Understanding"
@@ -17,4 +17,13 @@
   github: "https://github.com/Prongcan/ExpInstructor"
   github_label: "Code & Prompts"
   image: "/assets/img/publications/instructor.png"
-  abstract: "We propose <strong>ExpInstructor</strong>, the first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. ExpInstructor extracts experience triples from large-scale review corpora, constructs an Experience Graph, and employs an agentic reasoning framework for experience-driven idea evaluation. Both model-based and human assessments demonstrate that ExpInstructor significantly outperforms existing baselines."
+  abstract: "We propose <strong>ExpInstructor</strong>, first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. ExpInstructor extracts experience triples from large-scale review corpora, constructs an Experience Graph, and employs an agentic reasoning framework for experience-driven idea evaluation. Both model-based and human assessments demonstrate that ExpInstructor significantly outperforms existing baselines."
+
+- id: paperignition
+  title: "PaperIgnition Platform"
+  authors: "Rongcan Pei"
+  status: "Demo Paper Under Review"
+  website: "http://www.paperignition.com/"
+  github: "https://github.com/Algnite-Solutions/PaperIgnition"
+  image: "/assets/img/publications/paperignition.png"
+  abstract: "An intelligent paper recommendation and digestion platform that adopts a temporally decoupled architecture. The system autonomously fetches, indexes, and digests newly released arXiv papers through a daily pipeline, with multimodal LLM-based summarization executed offline. Processed papers are matched against user intent profiles through embedding-based retrieval and LLM-based reranking, supporting feedback-driven intent refinement for adaptive recommendations."
