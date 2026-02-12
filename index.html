@@ -10,6 +10,27 @@ layout: page
     const sidebarLinks = document.querySelectorAll('.nav-link');
     let researchLink = null;
     let blogLink = null;
+    let linkModified = false;
+
+    sidebarLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const text = link.textContent.trim();
+
+      // Modify Research and Blog links to point to home anchors
+      if (href === '/research/' || href === '/research') {
+        link.setAttribute('href', '/#research');
+        researchLink = link;
+        linkModified = true;
+      }
+      if (href === '/blog/' || href === '/blog') {
+        link.setAttribute('href', '/#blog');
+        blogLink = link;
+        linkModified = true;
+      }
+    });
+    const sidebarLinks = document.querySelectorAll('.nav-link');
+    let researchLink = null;
+    let blogLink = null;
 
     sidebarLinks.forEach(link => {
       const href = link.getAttribute('href');
@@ -28,12 +49,12 @@ layout: page
 
     // Add submenu for Research papers
     if (researchLink) {
-      addResearchSubmenu(researchLink);
+      setTimeout(() => addResearchSubmenu(researchLink), 100);
     }
 
     // Add submenu for Blog posts
     if (blogLink) {
-      addBlogSubmenu(blogLink);
+      setTimeout(() => addBlogSubmenu(blogLink), 100);
     }
 
     return true;
@@ -58,9 +79,11 @@ layout: page
     const pubItems = researchSection.querySelectorAll('.pub-card[id]');
     const papers = Array.from(pubItems).map(item => {
       const titleElement = item.querySelector('.pub-title');
+      // Get text content, excluding links
+      const title = titleElement ? (titleElement.textContent || titleElement.innerText).trim() : item.id;
       return {
         id: item.id,
-        title: titleElement ? titleElement.textContent.trim() : item.id
+        title: title
       };
     });
 
@@ -181,7 +204,29 @@ layout: page
   // Also try after window load (in case sidebar loads late)
   window.addEventListener('load', modifySidebarLinks);
 
-  // Intercept clicks for smooth scrolling
+  // Also try after a short delay (for theme rendering)
+  setTimeout(modifySidebarLinks, 500);
+
+  // Intercept clicks for smooth scrolling (do this immediately)
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+
+    // Handle /research and /blog links
+    if (href && (href === '/research' || href === '/research/' || href === '/blog' || href === '/blog/')) {
+      e.preventDefault();
+      const targetId = href.includes('research') ? '#research' : '#blog';
+      const targetSection = document.getElementById(targetId.substring(1));
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, targetId);
+      }
+      return;
+    }
+
+    // Handle paper links
   document.addEventListener('click', function(e) {
     const link = e.target.closest('a');
     if (!link) return;
@@ -540,22 +585,16 @@ html {
     <div class="pub-content">
       <div class="pub-status">{{ pub.status }}</div>
       <h4 class="pub-title">
-        {% if pub.website %}
-          <a href="{{ pub.website }}" target="_blank" rel="noopener noreferrer" style="color: var(--heading-color); text-decoration: none;">
-            {{ pub.title }} <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 0.3rem; opacity: 0.6;"></i>
-          </a>
-        {% else %}
-          {{ pub.title }}
-        {% endif %}
+        {{ pub.title }}
       </h4>
       <div class="pub-authors">
         {{ pub.authors }}
       </div>
       <div class="pub-links">
         {% if pub.website %}
-        <a href="{{ pub.website }}" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-globe"></i> Website
-        </a>
+        <span style="color: var(--text-muted-color); font-size: 0.9rem;">
+          <i class="fas fa-globe"></i> {{ pub.website | replace: 'http://', '' | replace: 'https://', '' | replace: '/', '' }}
+        </span>
         {% endif %}
         {% if pub.arxiv %}
         <a href="{{ pub.arxiv }}" target="_blank" rel="noopener noreferrer">
