@@ -1,15 +1,6 @@
 ---
-layout: page
+layout: none
 icon: fas fa-archive
 order: 3
 title: Blog
-permalink: /blog/
 ---
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="refresh" content="0;url=/#blog">
-  <script>window.location.href='/#blog';</script>
-</head>
-</html>

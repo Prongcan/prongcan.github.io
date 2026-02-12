@@ -5,62 +5,262 @@ layout: page
 
 <script>
 (function() {
-  // Check if URL contains /research or /blog path
-  const currentPath = window.location.pathname;
+  // Wait for sidebar to load, then modify the navigation links
+  function modifySidebarLinks() {
+    const sidebarLinks = document.querySelectorAll('.nav-link');
+    let researchLink = null;
+    let blogLink = null;
 
-  if (currentPath.includes('/research') && !currentPath.startsWith('/#')) {
-    // Redirect to home with research anchor
-    window.location.replace('/#research');
-    return;
-  }
-
-  if (currentPath.includes('/blog') && !currentPath.startsWith('/#')) {
-    // Redirect to home with blog anchor
-    window.location.replace('/#blog');
-    return;
-  }
-
-  // If we're on the home page, intercept sidebar link clicks
-  if (currentPath === '/' || currentPath === '') {
-    document.addEventListener('click', function(e) {
-      const link = e.target.closest('a');
-      if (!link) return;
-
+    sidebarLinks.forEach(link => {
       const href = link.getAttribute('href');
+      const text = link.textContent.trim();
+
+      // Modify Research and Blog links to point to home anchors
       if (href === '/research/' || href === '/research') {
-        e.preventDefault();
+        link.setAttribute('href', '/#research');
+        researchLink = link;
+      }
+      if (href === '/blog/' || href === '/blog') {
+        link.setAttribute('href', '/#blog');
+        blogLink = link;
+      }
+    });
+
+    // Add submenu for Research papers
+    if (researchLink) {
+      addResearchSubmenu(researchLink);
+    }
+
+    // Add submenu for Blog posts
+    if (blogLink) {
+      addBlogSubmenu(blogLink);
+    }
+
+    return true;
+  }
+
+  // Add submenu items under Research link
+  function addResearchSubmenu(researchLink) {
+    const parentLi = researchLink.closest('li');
+    if (!parentLi) return;
+
+    // Mark parent as having children
+    parentLi.classList.add('nav-item-has-children');
+
+    // Create submenu container
+    const submenu = document.createElement('ul');
+    submenu.className = 'sub-nav';
+
+    // Get research papers from the page (auto-generated from YAML)
+    const researchSection = document.getElementById('research');
+    if (!researchSection) return;
+
+    const pubItems = researchSection.querySelectorAll('.pub-card[id]');
+    const papers = Array.from(pubItems).map(item => {
+      const titleElement = item.querySelector('.pub-title');
+      return {
+        id: item.id,
+        title: titleElement ? titleElement.textContent.trim() : item.id
+      };
+    });
+
+    // Create submenu items
+    papers.forEach(paper => {
+      const li = document.createElement('li');
+
+      const a = document.createElement('a');
+      a.href = `/#${paper.id}`;
+      a.className = 'nav-link';
+      a.textContent = paper.title;
+
+      li.appendChild(a);
+      submenu.appendChild(li);
+    });
+
+    // Insert submenu after the Research link
+    parentLi.parentNode.insertBefore(submenu, parentLi.nextSibling);
+
+    // Toggle submenu on Research link click
+    researchLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const isVisible = submenu.classList.contains('visible');
+
+      if (isVisible) {
+        submenu.classList.remove('visible');
+        parentLi.classList.remove('expanded');
+        // Scroll to research section
         const researchSection = document.getElementById('research');
         if (researchSection) {
           researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Update URL without jumping
           history.pushState(null, null, '#research');
         }
-        return;
-      }
-
-      if (href === '/blog/' || href === '/blog') {
-        e.preventDefault();
-        const blogSection = document.getElementById('blog');
-        if (blogSection) {
-          blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Update URL without jumping
-          history.pushState(null, null, '#blog');
+      } else {
+        submenu.classList.add('visible');
+        parentLi.classList.add('expanded');
+        // Scroll to research section
+        const researchSection = document.getElementById('research');
+        if (researchSection) {
+          researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, null, '#research');
         }
-        return;
       }
     });
   }
 
-  // Handle direct anchor navigation
+  // Add submenu items under Blog link
+  function addBlogSubmenu(blogLink) {
+    const parentLi = blogLink.closest('li');
+    if (!parentLi) return;
+
+    // Mark parent as having children
+    parentLi.classList.add('nav-item-has-children');
+
+    // Create submenu container
+    const submenu = document.createElement('ul');
+    submenu.className = 'sub-nav';
+
+    // Get blog posts from the page
+    const blogItems = document.querySelectorAll('[id^="blog-"]');
+    const blogs = Array.from(blogItems).map((item, index) => {
+      const titleElement = item.querySelector('h3 a');
+      return {
+        id: `blog-${index + 1}`,
+        title: titleElement ? titleElement.textContent.trim() : `Blog Post ${index + 1}`
+      };
+    });
+
+    // Create submenu items
+    blogs.forEach(blog => {
+      const li = document.createElement('li');
+
+      const a = document.createElement('a');
+      a.href = `/#${blog.id}`;
+      a.className = 'nav-link';
+      a.textContent = blog.title;
+
+      li.appendChild(a);
+      submenu.appendChild(li);
+    });
+
+    // Insert submenu after the Blog link
+    parentLi.parentNode.insertBefore(submenu, parentLi.nextSibling);
+
+    // Toggle submenu on Blog link click
+    blogLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const isVisible = submenu.classList.contains('visible');
+
+      if (isVisible) {
+        submenu.classList.remove('visible');
+        parentLi.classList.remove('expanded');
+        // Scroll to blog section
+        const blogSection = document.getElementById('blog');
+        if (blogSection) {
+          blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, null, '#blog');
+        }
+      } else {
+        submenu.classList.add('visible');
+        parentLi.classList.add('expanded');
+        // Scroll to blog section
+        const blogSection = document.getElementById('blog');
+        if (blogSection) {
+          blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, null, '#blog');
+        }
+      }
+    });
+  }
+
+  // Try to modify links immediately
+  if (!modifySidebarLinks()) {
+    // If sidebar not ready, wait for DOM content loaded
+    document.addEventListener('DOMContentLoaded', modifySidebarLinks);
+  }
+
+  // Also try after window load (in case sidebar loads late)
+  window.addEventListener('load', modifySidebarLinks);
+
+  // Intercept clicks for smooth scrolling
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+
+    // Handle main sections
+    if (href === '/#research') {
+      e.preventDefault();
+      const researchSection = document.getElementById('research');
+      if (researchSection) {
+        researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#research');
+      }
+      return;
+    }
+
+    if (href === '/#blog') {
+      e.preventDefault();
+      const blogSection = document.getElementById('blog');
+      if (blogSection) {
+        blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#blog');
+      }
+      return;
+    }
+
+    if (href === '/' || href === '/#') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.pushState(null, null, ' ');
+      return;
+    }
+
+    // Handle paper links (auto-generated from YAML)
+    if (href.startsWith('/#') && href !== '/#research' && href !== '/#blog' && !href.startsWith('/#blog-')) {
+      e.preventDefault();
+      const pubId = href.replace('/#', '');
+      const pubSection = document.getElementById(pubId);
+      if (pubSection) {
+        pubSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + pubId);
+      }
+      return;
+    }
+
+    // Handle blog post links
+    if (href.startsWith('/#blog-')) {
+      e.preventDefault();
+      const blogId = href.replace('/#', '');
+      const blogSection = document.getElementById(blogId);
+      if (blogSection) {
+        blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + blogId);
+      }
+      return;
+    }
+  });
+
+  // Handle browser back/forward buttons with smooth scrolling
   window.addEventListener('hashchange', function() {
     const hash = window.location.hash;
-    if (hash === '#research' || hash === '#blog') {
+    if (hash) {
       const target = document.querySelector(hash);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   });
+
+  // On page load, scroll to hash if present
+  if (window.location.hash) {
+    setTimeout(function() {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  }
 })();
 </script>
 
@@ -153,6 +353,56 @@ html {
 
 .pub-links a:hover {
   opacity: 0.7;
+}
+
+/* Submenu styles */
+.sub-nav {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.sub-nav.visible {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sub-nav li {
+  margin-bottom: 0.3rem;
+}
+
+.sub-nav .nav-link {
+  font-size: 0.9em;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.sub-nav .nav-link:hover {
+  opacity: 1;
+}
+
+/* Arrow indicator for expandable items */
+.nav-item-has-children > .nav-link::after {
+  content: ' ›';
+  float: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-item-has-children.expanded > .nav-link::after {
+  transform: rotate(90deg);
 }
 
 .pub-content {
@@ -274,56 +524,37 @@ html {
 <section id="research" style="margin-bottom: 4rem;">
   <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">Research</h2>
 
-  <!-- VERA Paper -->
-  <div class="pub-card">
+  {% for pub in site.data.publications %}
+  <div id="{{ pub.id }}" class="pub-card">
     <div class="pub-pipeline">
-      <img src="/assets/img/publications/VERA.png" alt="VERA Pipeline" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
+      <img src="{{ pub.image }}" alt="{{ pub.title }} Pipeline">
     </div>
     <div class="pub-content">
-      <div class="pub-status">Under Review</div>
+      <div class="pub-status">{{ pub.status }}</div>
       <h4 class="pub-title">
-        VERA: Identifying and Leveraging Visual Evidence Retrieval Heads in Long-Context Understanding
+        {{ pub.title }}
       </h4>
       <div class="pub-authors">
-        Rongcan Pei, Huan Li, Fang Guo, Qi Zhu
+        {{ pub.authors }}
       </div>
       <div class="pub-links">
-        <a href="https://arxiv.org/abs/2602.10146v1" target="_blank" rel="noopener noreferrer">
+        {% if pub.arxiv %}
+        <a href="{{ pub.arxiv }}" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-file-alt"></i> arXiv
         </a>
-        <a href="https://github.com/Prongcan/VERA" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i> Code
+        {% endif %}
+        {% if pub.github %}
+        <a href="{{ pub.github }}" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github"></i> {{ pub.github_label | default: 'Code' }}
         </a>
+        {% endif %}
       </div>
       <p class="pub-abstract">
-        Through attention analysis, we identify specific <strong>Visual Evidence Retrieval (VER) Heads</strong> — a <em>sparse, dynamic</em> set of attention heads critical for locating visual cues during reasoning. We propose <strong>VERA</strong>, a training-free framework that detects model uncertainty to trigger explicit verbalization of visual evidence. VERA achieves <strong>21.3%</strong> relative improvement on Qwen3-VL-8B-Instruct and <strong>20.1%</strong> on GLM-4.1V-Thinking across five benchmarks.
+        {{ pub.abstract }}
       </p>
     </div>
   </div>
-
-  <!-- ExpInstructor Paper -->
-  <div class="pub-card">
-    <div class="pub-pipeline">
-      <img src="/assets/img/publications/instructor.png" alt="ExpInstructor Pipeline" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
-    </div>
-    <div class="pub-content">
-      <div class="pub-status">Under Review</div>
-      <h4 class="pub-title">
-        ExpInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation
-      </h4>
-      <div class="pub-authors">
-        <span style="text-decoration: underline;">R. Pei</span>*, F. Guo*, Q. Qi, Q. Zhu, Y. Luo, J. Yan, D. Zheng, Y. Zhang
-      </div>
-      <div class="pub-links">
-        <a href="https://github.com/Prongcan/ExpInstructor" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i> Code & Prompts
-        </a>
-      </div>
-      <p class="pub-abstract">
-        We propose <strong>ExpInstructor</strong>, the first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. ExpInstructor extracts experience triples from large-scale review corpora, constructs an Experience Graph, and employs an agentic reasoning framework for experience-driven idea evaluation. Both model-based and human assessments demonstrate that ExpInstructor significantly outperforms existing baselines.
-      </p>
-    </div>
-  </div>
+  {% endfor %}
 </section>
 
 <!-- Blog -->
@@ -333,7 +564,7 @@ html {
   {% assign posts = site.posts | limit: 3 %}
   <div class="blog-list">
     {% for post in posts %}
-    <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color);">
+    <div id="blog-{{ forloop.index }}" style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color);">
       <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; font-family: 'Libre Baskerville', serif;">
         <a href="{{ post.url }}" style="color: var(--heading-color); text-decoration: none;">
           {{ post.title }}

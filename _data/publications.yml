@@ -1,0 +1,20 @@
+# Publications Data
+# Add your papers here. The website will automatically render them.
+
+- id: vera
+  title: "VERA: Identifying and Leveraging Visual Evidence Retrieval Heads in Long-Context Understanding"
+  authors: "Rongcan Pei, Huan Li, Fang Guo, Qi Zhu"
+  status: "Under Review"
+  arxiv: "https://arxiv.org/abs/2602.10146v1"
+  github: "https://github.com/Prongcan/VERA"
+  image: "/assets/img/publications/VERA.png"
+  abstract: "Through attention analysis, we identify specific <strong>Visual Evidence Retrieval (VER) Heads</strong> — a <em>sparse, dynamic</em> set of attention heads critical for locating visual cues during reasoning. We propose <strong>VERA</strong>, a training-free framework that detects model uncertainty to trigger explicit verbalization of visual evidence. VERA achieves <strong>21.3%</strong> relative improvement on Qwen3-VL-8B-Instruct and <strong>20.1%</strong> on GLM-4.1V-Thinking across five benchmarks."
+
+- id: expinstructor
+  title: "ExpInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation"
+  authors: "<span style='text-decoration: underline;'>R. Pei</span>*, F. Guo*, Q. Qi, Q. Zhu, Y. Luo, J. Yan, D. Zheng, Y. Zhang"
+  status: "Under Review"
+  github: "https://github.com/Prongcan/ExpInstructor"
+  github_label: "Code & Prompts"
+  image: "/assets/img/publications/instructor.png"
+  abstract: "We propose <strong>ExpInstructor</strong>, the first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. ExpInstructor extracts experience triples from large-scale review corpora, constructs an Experience Graph, and employs an agentic reasoning framework for experience-driven idea evaluation. Both model-based and human assessments demonstrate that ExpInstructor significantly outperforms existing baselines."
