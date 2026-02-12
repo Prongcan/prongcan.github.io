@@ -295,6 +295,35 @@ layout: page
       }
     }, 100);
   }
+
+  // Hide search box with JavaScript (more reliable)
+  function hideSearchBox() {
+    // Try multiple possible selectors
+    const searchSelectors = [
+      '.top-bar',
+      '.search-container',
+      '#search',
+      '.search-input',
+      'input[type="search"]',
+      '.search',
+      '[class*="search"]',
+      '.sidebar-search'
+    ];
+
+    searchSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        el.style.display = 'none';
+        el.remove(); // Completely remove from DOM
+      });
+    });
+  }
+
+  // Run immediately and on load
+  hideSearchBox();
+  document.addEventListener('DOMContentLoaded', hideSearchBox);
+  window.addEventListener('load', hideSearchBox);
+  setTimeout(hideSearchBox, 500);
 })();
 </script>
 
@@ -307,7 +336,7 @@ body {
   line-height: 1.6;
   max-width: none !important;
   margin: 0 auto;
-  padding-left: 300px;
+  padding-left: 10px;
   padding-right: 3rem;
 }
 
