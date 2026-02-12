@@ -312,7 +312,11 @@ body {
 }
 
 /* Fix layout - center content and hide search */
-.top-bar {
+.top-bar,
+.search-container,
+#search,
+.search-input,
+[type="search"] {
   display: none !important;
 }
 
@@ -393,7 +397,73 @@ section {
   width: 100% !important;
 }
 
-/* Publication Card Styles */
+/* Responsive design - adjust padding and width for smaller screens */
+@media (max-width: 1600px) {
+  body {
+    padding-right: 2rem;
+  }
+
+  #experience,
+  #research,
+  #blog,
+  section {
+    max-width: 90vw !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  body {
+    padding-right: 1.5rem;
+  }
+
+  #experience,
+  #research,
+  #blog,
+  section {
+    max-width: 95vw !important;
+  }
+
+  .pub-pipeline {
+    width: 320px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Hide sidebar on mobile */
+  .sidebar {
+    display: none !important;
+  }
+
+  .container,
+  #experience,
+  #research,
+  #blog,
+  section {
+    max-width: 100vw !important;
+    padding: 0 1rem;
+  }
+
+  .pub-card {
+    flex-direction: column !important;
+    padding: 1.5rem !important;
+  }
+
+  .pub-pipeline {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 200px !important;
+  }
+
+  .profile-header div {
+    max-width: 100% !important;
+  }
+}
 .pub-card {
   display: flex;
   gap: 2rem;
@@ -556,7 +626,7 @@ section {
   <p style="font-size: 1.3rem; color: var(--text-muted-color); margin-bottom: 1.5rem;">Undergraduate Student at Tongji University</p>
   
   <!-- About Me -->
-  <div style="max-width: 950px; margin: 0 auto; text-align: left; font-family: 'Segoe UI', 'Segoe UI Variable', sans-serif; font-size: 1.1rem; line-height: 1.9; color: var(--text-color);">
+  <div style="max-width: 800px; margin: 0 auto; text-align: left; font-family: 'Segoe UI', 'Segoe UI Variable', sans-serif; font-size: 1.1rem; line-height: 1.9; color: var(--text-color);">
     <p style="margin-bottom: 0.8rem;">
       I am an undergraduate student at <strong>Tongji University</strong>, advised by Prof. <strong>Miaomiao Zhang</strong>. 
       Since April 2025, I have been a visiting student at <strong>Westlake University</strong>, 
