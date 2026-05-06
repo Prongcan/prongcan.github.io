@@ -57,7 +57,16 @@ Qi Zhu*, Fang Guo*, **Rongcan Pei***, Shuqi He, Hui Chen, Yue Zhang
 </div>
 </div>
 
-- Augmenting Multi-Technique Static Analysis with Large Language Models: A Neuro-Symbolic Approach to Smart Contract Vulnerability Detection, Junxiang Wang, Fu Song, **Miaomiao Zhang**, Bowen Du, **Rongcan Pei**, **ISSTA 2026**.
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ISSTA 2026</div><img src='images/publications/issta.png' alt="ELSA" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Augmenting Multi-Technique Static Analysis with Large Language Models: A Neuro-Symbolic Approach to Smart Contract Vulnerability Detection]()
+
+Junxiang Wang, Fu Song, **Miaomiao Zhang**, Bowen Du, **Rongcan Pei**
+
+- We propose **ELSA**, a neuro-symbolic approach that augments static analysis with LLM-assisted constraint-guided reasoning and resolves conflicting outputs through analyzer ensemble. ELSA significantly outperforms baselines across three open-source benchmarks and self-constructed ZKP-based smart contracts.
+</div>
+</div>
 
 # 🎖 Honors and Awards
 - *2025*, Social Activity Scholarship, Tongji University.
