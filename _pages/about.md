@@ -75,6 +75,9 @@ Junxiang Wang, Fu Song, **Miaomiao Zhang**, Bowen Du, **Rongcan Pei**
 # 📖 Educations
 - *2023.09 - Present*, Undergraduate Student, Tongji University. Advised by Prof. **Miaomiao Zhang**.
 
+# 💻 Service
+- Invited as reviewer for **KDD 2026**.
+
 # 💻 Experience
 - *2026.04 - Present*, Research Intern, University of Virginia. Advised by Prof. [**Yu Meng**](https://yumeng5.github.io/).
 - *2025.04 - 2026.05*, Visiting Student, Westlake University. Advised by Prof. [**Yue Zhang**](https://frcchang.github.io/).
