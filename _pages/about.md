@@ -10,12 +10,15 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
+<strong style="font-size: 1.4em;">Towards Data-Efficient and Trustworthy Reasoning.</strong>
+
 I am an undergraduate student at **Tongji University**, advised by Prof. **Miaomiao Zhang**.
 
 Since April 2025, I have been a visiting student at **Westlake University**, advised Prof. [**Yue Zhang**](https://frcchang.github.io/). I also work closely with Prof. [**Qi Zhu**](https://gentlezhu.github.io/) at **Zhejiang University**, where I am researching the attention mechanisms of Vision-Language Models and working to enhance their long-context reasoning abilities. 
 Since April 2026, I have been a research intern at the **University of Virginia**, advised by Prof. [**Yu Meng**](https://yumeng5.github.io/). My research focuses on post-training of LLM.
 
 # 🔥 News
+- <strong style="color: #c62828;">📌 Pinned: I am looking for PhD opportunities for Fall 2027!</strong>
 - *2026.09*: &nbsp;🚀 We propose [**NSD**](https://arxiv.org/pdf/2609.11699), our new work on improving LLM reasoning through negative self-distillation!
 - *2026.08*: &nbsp;🌍✈️ Attended **IJCAI 2026** in beautiful **Bremen, Germany**!
 - *2026.07*: &nbsp;🎉 Our paper "DeepInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation" has been accepted by **COLM 2026 Workshop LM4Sci**!
