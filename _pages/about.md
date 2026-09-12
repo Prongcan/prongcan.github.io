@@ -16,6 +16,8 @@ Since April 2025, I have been a visiting student at **Westlake University**, adv
 Since April 2026, I have been a research intern at the **University of Virginia**, advised by Prof. [**Yu Meng**](https://yumeng5.github.io/). My research focuses on post-training of LLM.
 
 # 🔥 News
+- *2026.09*: &nbsp;🚀 We propose [**NSD**](https://arxiv.org/pdf/2609.11699), our new work on improving LLM reasoning through negative self-distillation!
+- *2026.08*: &nbsp;🌍✈️ Attended **IJCAI 2026** in beautiful **Bremen, Germany**!
 - *2026.07*: &nbsp;🎉 Our paper "DeepInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation" has been accepted by **COLM 2026 Workshop LM4Sci**!
 - *2026.05*: &nbsp;🎉 Our paper "VERA: Identifying and Leveraging Visual Evidence Retrieval Heads in Long-Context Understanding" has been accepted by **IJCAI 2026**!
 - *2026.04*: &nbsp;🎉 Our paper "Augmenting Multi-Technique Static Analysis with Large Language Models" has been accepted by **ISSTA 2026**!
@@ -106,7 +108,7 @@ I am committed to comprehensively understanding and researching the full pipelin
         name: "Reasoning & Augmentation",
         details: "Reasoning performance can be enhanced by both RAG (VERA and DeepInstructor) and post-training (NSD).",
         children: [
-          { name: "Post Training", details: "I'm currently working on this." },
+          { name: "Post Training", details: "Negative Self-Distillation (NSD) shows that self-improvement can come from learning which reasoning behaviors to avoid. A teacher conditioned on correct answers can encourage overconfidence and weaken self-correction. We construct a negative teacher from the model itself, then use dynamic token-level gating to target reasoning flaws while preserving basic language abilities. The key insight is that selective negative feedback can improve reasoning without ground-truth answers or an external teacher, while retaining exploration and self-correction." },
           { name: "Agent & RAG", details: "We develop DeepInstructor, which transforms OpenReview data into a graph database with a dedicated retriever to enhance the agent's idea evaluation capability. VERA explores RAG-based reasoning enhancement from an attention-level perspective.", children: [
             { name: "AI for Research and Safety", details: "DeepInstructor and ELSA address research ideation and smart contract vulnerability detection, respectively. Through these projects, I learned how to define real-world problems where AI can provide meaningful solutions, and how to collect and process domain-specific data." }
           ] }
@@ -366,6 +368,18 @@ I am committed to comprehensively understanding and researching the full pipelin
 
 # 📝 Publications
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv 2026</div><img src='images/publications/NSD.png' alt="NSD" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Negative Self-Distillation: Learning to Reason by Avoiding Flaws](https://arxiv.org/pdf/2609.11699)
+
+**Rongcan Pei**, Zhepei Wei, Shuyao Xu, Xinyu Zhu, Wei-Lin Chen, Yu Meng
+
+[**arXiv**](https://arxiv.org/pdf/2609.11699)
+- We propose **Negative Self-Distillation (NSD)**, which improves LLM reasoning by learning to avoid errors produced by a negatively conditioned version of the model, without requiring reference answers or an external teacher. A **dynamic token-level gate** directs training toward reasoning errors while protecting basic language abilities. Across seven mathematical reasoning benchmarks, NSD improves average accuracy by **2.3, 7.5, and 6.0 percentage points** for 1.7B, 4B, and 8B models, respectively, while retaining self-correction and improving training efficiency.
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">IJCAI 2026</div><img src='images/publications/VERA.png' alt="VERA" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -381,23 +395,23 @@ I am committed to comprehensively understanding and researching the full pipelin
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">COLM 2026 Workshop LM4Sci</div><img src='images/publications/instructor.png' alt="DeepInstructor" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[DeepInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation](https://github.com/Prongcan/ExpInstructor)
+[DeepInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation](https://openreview.net/pdf?id=SkakT0pnsL)
 
 **Rongcan Pei***, Fang Guo*, Qinglin Qi, Qi Zhu, Yun Luo, Jianhao Yan, Minjun Zhu, Qiujie Xie, Dehong Zheng, Yue Zhang
 
-[**Code & Prompts**](https://github.com/Prongcan/ExpInstructor)
+[**Paper**](https://openreview.net/pdf?id=SkakT0pnsL) \| [**Code & Prompts**](https://github.com/Prongcan/ExpInstructor)
 - We propose **DeepInstructor**, the first agentic AI instructor that emulates how human mentors leverage past scholarly experience to guide research ideation. DeepInstructor extracts experience triples from large-scale review corpora, constructs an Experience Graph, and employs an agentic reasoning framework for experience-driven idea evaluation.
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Demo Paper Under Review</div><img src='images/publications/paperignition.png' alt="PaperIgnition" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv 2026</div><img src='images/publications/paperignition.png' alt="PaperIgnition" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[PaperIgnition Platform](http://www.paperignition.com/)
+[PaperIgnition & Sci-Surf Project](https://arxiv.org/pdf/2608.11973)
 
 Qi Zhu*, Fang Guo*, **Rongcan Pei***, Shuqi He, Hui Chen, Yue Zhang
 
-[**Website**](http://www.paperignition.com/) \| [**Code**](https://github.com/Algnite-Solutions/PaperIgnition)
+[**arXiv**](https://arxiv.org/pdf/2608.11973) \| [**Website**](http://www.paperignition.com/) \| [**Code**](https://github.com/Algnite-Solutions/PaperIgnition)
 - An intelligent paper recommendation and digestion platform that adopts a temporally decoupled architecture. The system autonomously fetches, indexes, and digests newly released arXiv papers through a daily pipeline, with multimodal LLM-based summarization executed offline.
 </div>
 </div>
@@ -405,7 +419,7 @@ Qi Zhu*, Fang Guo*, **Rongcan Pei***, Shuqi He, Hui Chen, Yue Zhang
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ISSTA 2026</div><img src='images/publications/issta.png' alt="ELSA" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Augmenting Multi-Technique Static Analysis with Large Language Models: A Neuro-Symbolic Approach to Smart Contract Vulnerability Detection]()
+[Augmenting Multi-Technique Static Analysis with Large Language Models: A Neuro-Symbolic Approach to Smart Contract Vulnerability Detection](https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/131/Augmenting-Multi-Technique-Static-Analysis-with-Large-Language-Models-A-Neuro-Symbol)
 
 Junxiang Wang, Fu Song, **Miaomiao Zhang**, Bowen Du, **Rongcan Pei**
 
