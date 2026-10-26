@@ -40,6 +40,38 @@ Since April 2026, I have been a research intern at the **University of Virginia*
   font-weight: 700;
   letter-spacing: 0.01em;
 }
+#experience-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#experience-list li {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  margin: 0 0 12px;
+}
+#experience-list img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+#experience-list img.experience-logo-wide {
+  width: 90px;
+  height: auto;
+}
+#experience-list img.experience-logo-westlake {
+  width: 42px;
+  height: 42px;
+}
+#experience-list img.experience-logo-zju {
+  width: 76px;
+  height: 62px;
+  transform: translateX(-15px);
+}
 .experience-tree-section {
   position: relative;
   margin: 2.4rem 0 2.7rem;
@@ -761,6 +793,9 @@ Junxiang Wang, Fu Song, **Miaomiao Zhang**, Bowen Du, **Rongcan Pei**
 - Invited as reviewer for **KDD 2026**.
 
 # 💻 Experience
-- *2026.04 - Present*, Research Intern, University of Virginia. Advised by Prof. [**Yu Meng**](https://yumeng5.github.io/).
-- *2025.04 - 2026.05*, Visiting Student, Westlake University. Advised by Prof. [**Yue Zhang**](https://frcchang.github.io/).
-- *2025.04 - Present*, Research Collaborator, Zhejiang University. Advised by Prof. [**Qi Zhu**](https://gentlezhu.github.io/).
+<ul id="experience-list">
+  <li><img src="{{ '/images/experience/ant-group.svg' | relative_url }}" alt="" loading="lazy"><span><em>2026.09 - Present</em>, AI Researcher (Intern), Ant Group.</span></li>
+  <li><img class="experience-logo-wide" src="{{ '/images/experience/university-of-virginia.svg' | relative_url }}" alt="" loading="lazy"><span><em>2026.04 - Present</em>, Research Intern, University of Virginia. Advised by Prof. <a href="https://yumeng5.github.io/"><strong>Yu Meng</strong></a>.</span></li>
+  <li><img class="experience-logo-westlake" src="{{ '/images/experience/westlake-university.png' | relative_url }}" alt="" loading="lazy"><span><em>2025.04 - 2026.05</em>, Visiting Student, Westlake University. Advised by Prof. <a href="https://frcchang.github.io/"><strong>Yue Zhang</strong></a>.</span></li>
+  <li><img class="experience-logo-zju" src="{{ '/images/experience/zhejiang-university.png' | relative_url }}" alt="" loading="lazy"><span><em>2025.04 - Present</em>, Research Collaborator, Zhejiang University. Advised by Prof. <a href="https://gentlezhu.github.io/"><strong>Qi Zhu</strong></a>.</span></li>
+</ul>
