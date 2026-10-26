@@ -20,6 +20,7 @@ Since April 2026, I have been a research intern at the **University of Virginia*
 # 🔥 News
 <div class="phd-opportunity">📌 Pinned: I am looking for PhD opportunities for Fall 2027!</div>
 
+- *2026.09*: &nbsp;🎉 I'm excited to join **Ant Group** as an **AI Researcher (Intern)**!
 - *2026.09*: &nbsp;🚀 We propose [**NSD**](https://arxiv.org/pdf/2609.11699), our new work on improving LLM reasoning through negative self-distillation!
 - *2026.08*: &nbsp;🌍✈️ Attended **IJCAI 2026** in beautiful **Bremen, Germany**!
 - *2026.07*: &nbsp;🎉 Our paper "DeepInstructor: An Agentic AI Instructor for Experience-Driven Idea Evaluation" has been accepted by **COLM 2026 Workshop LM4Sci**!
